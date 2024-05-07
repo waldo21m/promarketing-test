@@ -1,5 +1,4 @@
 'use client';
-import Button from '@mui/material/Button';
 import { useAppDispatch } from '../lib/hooks';
 import { incrementByAmount, usePageSelector } from '../lib/features/pageSlice';
 import './page.css';
@@ -10,20 +9,19 @@ const Home = () => {
 
 	return (
 		<>
-			<h1>Next.js</h1>
-			<div className='card'>
-				<Button
-					variant='contained'
-					color='secondary'
+			<h1 className='text-2xl sm:text-4xl mb-2'>Next.js</h1>
+			<div>
+				<button
+					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2'
 					onClick={() => dispatch(incrementByAmount(1))}
 				>
 					count is {count}
-				</Button>
-				<p>
+				</button>
+				<p className='text-sm sm:text-lg text-gray-700'>
 					Edit <code>src/Main.page.tsx</code> and save to test HMR
 				</p>
 			</div>
-			<p className='read-the-docs'>
+			<p className='read-the-docs text-xs sm:text-sm text-gray-500'>
 				Click on the Vite and React logos to learn more
 			</p>
 		</>
