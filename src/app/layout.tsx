@@ -1,7 +1,5 @@
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
-import { CssBaseline } from '@mui/material';
-import ThemeProviderNext from './ThemeProviderNext';
 import StoreProvider from './StoreProvider';
 import './globals.css';
 import '@fontsource/roboto/300.css';
@@ -24,12 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
-				<StoreProvider>
-					<ThemeProviderNext>
-						<CssBaseline />
-						{children}
-					</ThemeProviderNext>
-				</StoreProvider>
+				<StoreProvider>{children}</StoreProvider>
 			</body>
 		</html>
 	);

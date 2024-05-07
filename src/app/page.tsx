@@ -1,5 +1,4 @@
 'use client';
-import Button from '@mui/material/Button';
 import { useAppDispatch } from '../lib/hooks';
 import { incrementByAmount, usePageSelector } from '../lib/features/pageSlice';
 import './page.css';
@@ -12,13 +11,9 @@ const Home = () => {
 		<>
 			<h1>Next.js</h1>
 			<div className='card'>
-				<Button
-					variant='contained'
-					color='secondary'
-					onClick={() => dispatch(incrementByAmount(1))}
-				>
+				<button onClick={() => dispatch(incrementByAmount(1))}>
 					count is {count}
-				</Button>
+				</button>
 				<p>
 					Edit <code>src/Main.page.tsx</code> and save to test HMR
 				</p>
