@@ -15,12 +15,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body>
+			<body className='text-sm	text-gray-600 md:text-base'>
 				<StoreProvider>
-					<div className='flex justify-center items-center w-screen min-h-screen bg-gray-200'>
-						<div className='flex flex-col justify-center items-center w-full min-h-screen px-4 py-8 bg-neutral-50 md:rounded-lg	md:shadow-lg md:w-4/5 md:min-h-fit xl:w-3/5'>
-							{children}
-						</div>
+					<div className='w-full min-h-screen px-4 py-8 bg-white sm:pt-16'>
+						{children}
 					</div>
 				</StoreProvider>
 			</body>
