@@ -42,6 +42,7 @@ const CreateRequest: React.FC = () => {
 		setError,
 		clearErrors,
 		trigger,
+		reset,
 	} = useForm<CreateRequestFormInputs>({
 		resolver: yupResolver(schema),
 		mode: 'onBlur',
@@ -113,6 +114,12 @@ const CreateRequest: React.FC = () => {
 		console.log(data);
 
 		toast.success('Solicitud creada con éxito', toastConfig);
+
+		reset();
+		setStartDate(null);
+		setFirstProviderOnBlur(false);
+		setFirstStartDateOnBlur(false);
+		setSelectedProviders([]);
 	};
 
 	return (
