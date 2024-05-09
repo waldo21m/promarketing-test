@@ -19,7 +19,7 @@ const CreateRequest: React.FC = () => {
 	};
 
 	return (
-		<div>
+		<div className='mt-2.5'>
 			<div className='py-2 px-3.5 bg-pm-gray-100a md:rounded-lg	md:shadow-lg mb-3.5'>
 				<h2 className='text-base md:text-xl mb-4 font-bold uppercase'>
 					Autoexclusión proveedores
@@ -103,7 +103,6 @@ const CreateRequest: React.FC = () => {
 				</div>
 
 				<textarea
-					id='reason'
 					rows={4}
 					className='w-full p-3 text-xs placeholder:text-pm-neutral-200 rounded-xl border-gray-400 shadow-sm focus:border-pm-amber-500 focus:ring-1 focus:ring-pm-amber-500 focus:ring-opacity-50'
 					placeholder='Motivo'

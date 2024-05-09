@@ -7,7 +7,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 	setActiveTab,
 }) => {
 	return (
-		<div className='pb-2.5'>
+		<div>
 			<button
 				className={clsx(
 					'px-2',
