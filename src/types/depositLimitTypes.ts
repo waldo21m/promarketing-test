@@ -6,3 +6,11 @@ export interface DepositLimitFormInputs {
 	startDate: Date;
 	reason: string;
 }
+
+export type FieldName =
+	| 'minimumDepositAmount'
+	| 'daily'
+	| 'weekly'
+	| 'monthly'
+	| 'startDate'
+	| 'reason';

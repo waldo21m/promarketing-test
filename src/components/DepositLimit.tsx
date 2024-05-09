@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
@@ -55,6 +56,7 @@ const DepositLimit: React.FC = () => {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
+		watch,
 		setValue,
 		setError,
 		clearErrors,
@@ -62,8 +64,112 @@ const DepositLimit: React.FC = () => {
 		reset,
 	} = useForm<DepositLimitFormInputs>({
 		resolver: yupResolver(schema),
-		mode: 'onBlur',
 	});
+
+	const [daily, weekly, minimumDepositAmount] = watch([
+		'daily',
+		'weekly',
+		'minimumDepositAmount',
+	]);
+
+	useEffect(() => {
+		if (daily && minimumDepositAmount && daily < minimumDepositAmount) {
+			setError('daily', {
+				type: 'manual',
+				message: 'El monto Diario debe ser mayor al monto mínimo de depósito',
+			});
+		} else if (daily && weekly && daily > weekly) {
+			setError('daily', {
+				type: 'manual',
+				message: 'El monto Diario debe ser menor al monto Semanal',
+			});
+		} else {
+			clearErrors('daily');
+		}
+	}, [clearErrors, daily, minimumDepositAmount, setError, weekly]);
+
+	// useEffect(() => {
+	// 	if (daily && weekly && daily > weekly) {
+	// 		setError('daily', {
+	// 			type: 'manual',
+	// 			message: 'El monto Diario debe ser menor al monto Semanal',
+	// 		});
+	// 	} else {
+	// 		clearErrors('daily');
+	// 	}
+
+	// 	if (daily && monthly && daily > monthly) {
+	// 		setError('daily', {
+	// 			type: 'manual',
+	// 			message: 'El monto Diario debe ser menor al monto Mensual',
+	// 		});
+	// 	} else {
+	// 		clearErrors('daily');
+	// 	}
+
+	// 	if (weekly && daily && weekly < daily) {
+	// 		setError('weekly', {
+	// 			type: 'manual',
+	// 			message: 'El monto Semanal debe ser mayor al monto Diario',
+	// 		});
+	// 	} else {
+	// 		clearErrors('weekly');
+	// 	}
+
+	// 	if (weekly && monthly && weekly > monthly) {
+	// 		setError('weekly', {
+	// 			type: 'manual',
+	// 			message: 'El monto Semanal debe ser menor al monto Mensual',
+	// 		});
+	// 	} else {
+	// 		clearErrors('weekly');
+	// 	}
+
+	// 	if (monthly && daily && monthly < daily) {
+	// 		setError('monthly', {
+	// 			type: 'manual',
+	// 			message: 'El monto Mensual debe ser mayor al monto Diario',
+	// 		});
+	// 	} else {
+	// 		clearErrors('monthly');
+	// 	}
+
+	// 	if (monthly && weekly && monthly < weekly) {
+	// 		setError('monthly', {
+	// 			type: 'manual',
+	// 			message: 'El monto Mensual debe ser mayor al monto Semanal',
+	// 		});
+	// 	} else {
+	// 		clearErrors('monthly');
+	// 	}
+
+	// 	if (daily && daily < minimumDepositAmount) {
+	// 		setError('daily', {
+	// 			type: 'manual',
+	// 			message: 'El monto Diario debe ser mayor al monto mínimo de depósito',
+	// 		});
+	// 	} else {
+	// 		clearErrors('daily');
+	// 	}
+
+	// 	if (weekly && weekly < minimumDepositAmount) {
+	// 		setError('weekly', {
+	// 			type: 'manual',
+	// 			message: 'El monto Semanal debe ser mayor al monto mínimo de depósito',
+	// 		});
+	// 	} else {
+	// 		clearErrors('weekly');
+	// 	}
+
+	// 	if (monthly && monthly < minimumDepositAmount) {
+	// 		setError('monthly', {
+	// 			type: 'manual',
+	// 			message: 'El monto Mensual debe ser mayor al monto mínimo de depósito',
+	// 		});
+	// 	} else {
+	// 		clearErrors('monthly');
+	// 	}
+	// }, [clearErrors, daily, minimumDepositAmount, monthly, setError, weekly]);
 
 	const isWeekday = (date: Date) => {
 		const day = date.getDay();
@@ -88,7 +194,6 @@ const DepositLimit: React.FC = () => {
 	}, [clearErrors, firstStartDateOnBlur, setError, startDate]);
 
 	const onSubmit = (data: DepositLimitFormInputs) => {
-		// eslint-disable-next-line no-console
 		console.log(data);
 
 		toast.success('Límite de deposito creado con éxito', toastConfig);
@@ -97,6 +202,8 @@ const DepositLimit: React.FC = () => {
 		setStartDate(null);
 		setFirstStartDateOnBlur(false);
 	};
+
+	console.log(errors);
 
 	return (
 		<div className='mt-6'>
@@ -132,6 +239,9 @@ const DepositLimit: React.FC = () => {
 							},
 						)}
 						placeholder='Monto mínimo de depósito'
+						onBlur={() => {
+							trigger('minimumDepositAmount');
+						}}
 					/>
 					<FormErrorMessage
 						errorString={errors.minimumDepositAmount?.message}
@@ -292,6 +402,9 @@ const DepositLimit: React.FC = () => {
 							},
 						)}
 						placeholder='Motivo'
+						onBlur={() => {
+							trigger('reason');
+						}}
 					/>
 					<FormErrorMessage
 						errorString={errors.reason?.message}
@@ -301,7 +414,7 @@ const DepositLimit: React.FC = () => {
 					<div className='flex justify-center w-full'>
 						<button
 							type='submit'
-							disabled={!(isValid && !!startDate)}
+							// disabled={!(isValid && !!startDate)}
 							className={clsx(
 								'w-full',
 								'sm:w-96',
