@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import DepositLimit from '@/components/DepositLimit';
 import NavigationBar from '../components/NavigationBar';
+import DepositLimit from '../components/DepositLimit';
 import CreateRequest from '../components/CreateRequest';
 
 const Home: React.FC = () => {

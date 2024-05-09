@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { type NavigationBarProps } from '@/types/navigationBarTypes';
+import { type NavigationBarProps } from '../types/navigationBarTypes';
 
 const NavigationBar: React.FC<NavigationBarProps> = ({
 	activeTab,
