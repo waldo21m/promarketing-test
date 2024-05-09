@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import DepositLimit from '@/components/DepositLimit';
 import NavigationBar from '../components/NavigationBar';
+import DepositLimit from '../components/DepositLimit';
 import CreateRequest from '../components/CreateRequest';
 
 const Home: React.FC = () => {
-	const [activeTab, setActiveTab] = useState(1);
+	const [activeTab, setActiveTab] = useState(2);
 
 	return (
 		<>

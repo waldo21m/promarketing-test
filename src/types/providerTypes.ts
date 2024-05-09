@@ -1,6 +1,6 @@
 export interface ProviderBase {
-	name: string;
-	description: string;
+	name?: string;
+	description?: string;
 }
 
 export interface ProviderAPI extends ProviderBase {

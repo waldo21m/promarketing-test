@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import ToastifyProvider from './ToastifyProvider';
 import StoreProvider from './StoreProvider';
 import './globals.css';
 
@@ -18,9 +19,11 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({
 		<html lang='en'>
 			<body className='text-sm	text-gray-600 md:text-base'>
 				<StoreProvider>
-					<div className='w-full min-h-screen px-4 py-8 bg-white sm:pt-16'>
-						{children}
-					</div>
+					<ToastifyProvider>
+						<div className='w-full min-h-screen px-4 py-8 bg-white sm:pt-16'>
+							{children}
+						</div>
+					</ToastifyProvider>
 				</StoreProvider>
 			</body>
 		</html>

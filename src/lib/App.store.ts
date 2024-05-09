@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { pageSlice } from './features/pageSlice';
+import { homeSlice } from './features/homeSlice';
 
 export const appReducer = combineReducers({
-	[pageSlice.name]: pageSlice.reducer,
+	[homeSlice.name]: homeSlice.reducer,
 });
 
 export const makeStore = () => {
