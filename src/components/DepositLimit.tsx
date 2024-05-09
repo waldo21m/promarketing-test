@@ -203,8 +203,6 @@ const DepositLimit: React.FC = () => {
 		setFirstStartDateOnBlur(false);
 	};
 
-	console.log(errors);
-
 	return (
 		<div className='mt-6'>
 			<form onSubmit={handleSubmit(onSubmit)}>
