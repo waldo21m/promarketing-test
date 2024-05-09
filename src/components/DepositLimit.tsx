@@ -7,8 +7,8 @@ import React, { useEffect, useState } from 'react';
 import { es } from 'date-fns/locale';
 import clsx from 'clsx';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { toastConfig } from '@/utils/toastConfig';
 import FormErrorMessage from './FormErrorMessage';
+import { toastConfig } from '../utils/toastConfig';
 import { type DepositLimitFormInputs } from '../types/depositLimitTypes';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -55,7 +55,7 @@ const DepositLimit: React.FC = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isValid },
+		formState: { errors },
 		watch,
 		setValue,
 		setError,
@@ -430,9 +430,9 @@ const DepositLimit: React.FC = () => {
 								'focus:ring-pm-amber-500',
 								'focus:outline-none',
 								'disabled:bg-gray-300',
-								{
-									'cursor-not-allowed': !isValid,
-								},
+								// {
+								// 	'cursor-not-allowed': !isValid,
+								// },
 							)}
 						>
 							Enviar
