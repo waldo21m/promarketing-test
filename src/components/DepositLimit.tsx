@@ -1,19 +1,16 @@
-import Datepicker, {
-	type DateRangeType,
-	type DateValueType,
-} from 'react-tailwindcss-datepicker';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import React, { useState } from 'react';
+import { es } from 'date-fns/locale';
+import 'react-datepicker/dist/react-datepicker.css';
+
+registerLocale('es', es);
 
 const DepositLimit: React.FC = () => {
-	const [value, setValue] = useState<DateRangeType | null>({
-		startDate: null,
-		endDate: null,
-	});
+	const [startDate, setStartDate] = useState<Date>();
 
-	const handleValueChange = (exampleValue: DateValueType) => {
-		// eslint-disable-next-line no-console
-		console.log('newValue:', exampleValue);
-		setValue(exampleValue);
+	const isWeekday = (date: Date) => {
+		const day = date.getDay();
+		return day !== 0 && day !== 6;
 	};
 
 	return (
@@ -47,19 +44,15 @@ const DepositLimit: React.FC = () => {
 				/>
 
 				<div className='w-full sm:w-96 mb-9'>
-					<Datepicker
-						i18n='es'
-						primaryColor='amber'
-						useRange={false}
-						asSingle
-						readOnly
-						popoverDirection='up'
-						value={value}
-						onChange={handleValueChange}
-						placeholder='DD/MM/AAAA*'
-						displayFormat='DD/MM/YYYY'
+					<DatePicker
+						selected={startDate}
+						onChange={(date: Date) => setStartDate(date)}
 						minDate={new Date()}
-						inputClassName='w-full p-3 text-xs placeholder:text-pm-neutral-200 rounded-xl border-gray-400 shadow-sm focus:border-pm-amber-500 focus:ring-1 focus:ring-pm-amber-500 focus:ring-opacity-50'
+						filterDate={isWeekday}
+						dateFormat='dd/MM/yyyy'
+						placeholderText='DD/MM/AAAA*'
+						locale='es'
+						className='w-full p-3 text-xs placeholder:text-pm-neutral-200 rounded-xl border-gray-400 shadow-sm focus:border-pm-amber-500 focus:ring-1 focus:ring-pm-amber-500 focus:ring-opacity-50'
 					/>
 				</div>
 
