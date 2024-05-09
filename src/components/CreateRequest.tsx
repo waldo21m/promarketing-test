@@ -1,25 +1,16 @@
-'use client';
-import Datepicker, {
-	type DateValueType,
-	type DateRangeType,
-} from 'react-tailwindcss-datepicker';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import React, { useState } from 'react';
+import { es } from 'date-fns/locale';
 import { providersMock } from '../mock/provider.mock';
+import 'react-datepicker/dist/react-datepicker.css';
+
+registerLocale('es', es);
 
 const CreateRequest: React.FC = () => {
-	const [value, setValue] = useState<DateRangeType | null>({
-		startDate: null,
-		endDate: null,
-	});
-
-	const handleValueChange = (exampleValue: DateValueType) => {
-		// eslint-disable-next-line no-console
-		console.log('newValue:', exampleValue);
-		setValue(exampleValue);
-	};
+	const [startDate, setStartDate] = useState<Date>();
 
 	return (
-		<div>
+		<div className='mt-2.5'>
 			<div className='py-2 px-3.5 bg-pm-gray-100a md:rounded-lg	md:shadow-lg mb-3.5'>
 				<h2 className='text-base md:text-xl mb-4 font-bold uppercase'>
 					Autoexclusión proveedores
@@ -86,24 +77,18 @@ const CreateRequest: React.FC = () => {
 				</div>
 
 				<div className='w-full sm:w-80 mb-2'>
-					<Datepicker
-						i18n='es'
-						primaryColor='amber'
-						useRange={false}
-						asSingle
-						readOnly
-						popoverDirection='up'
-						value={value}
-						onChange={handleValueChange}
-						placeholder='DD/MM/AAAA*'
-						displayFormat='DD/MM/YYYY'
+					<DatePicker
+						selected={startDate}
+						onChange={(date: Date) => setStartDate(date)}
 						minDate={new Date()}
-						inputClassName='w-full p-3 text-xs placeholder:text-pm-neutral-200 rounded-xl border-gray-400 shadow-sm focus:border-pm-amber-500 focus:ring-1 focus:ring-pm-amber-500 focus:ring-opacity-50'
+						dateFormat='dd/MM/yyyy'
+						placeholderText='DD/MM/AAAA*'
+						locale='es'
+						className='w-full p-3 text-xs placeholder:text-pm-neutral-200 rounded-xl border-gray-400 shadow-sm focus:border-pm-amber-500 focus:ring-1 focus:ring-pm-amber-500 focus:ring-opacity-50'
 					/>
 				</div>
 
 				<textarea
-					id='reason'
 					rows={4}
 					className='w-full p-3 text-xs placeholder:text-pm-neutral-200 rounded-xl border-gray-400 shadow-sm focus:border-pm-amber-500 focus:ring-1 focus:ring-pm-amber-500 focus:ring-opacity-50'
 					placeholder='Motivo'
