@@ -5,7 +5,7 @@ import DepositLimit from '../components/DepositLimit';
 import CreateRequest from '../components/CreateRequest';
 
 const Home: React.FC = () => {
-	const [activeTab, setActiveTab] = useState(2);
+	const [activeTab, setActiveTab] = useState(1);
 
 	return (
 		<>
