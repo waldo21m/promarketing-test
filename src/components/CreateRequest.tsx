@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import React, { useEffect, useState } from 'react';
@@ -6,6 +7,7 @@ import { es } from 'date-fns/locale';
 import clsx from 'clsx';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FormErrorMessage from './FormErrorMessage';
+import { toastConfig } from '../utils/toastConfig';
 import { type CreateRequestFormInputs } from '../types/createRequestTypes';
 import { providersMock } from '../mock/provider.mock';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -109,6 +111,8 @@ const CreateRequest: React.FC = () => {
 	const onSubmit = (data: CreateRequestFormInputs) => {
 		// eslint-disable-next-line no-console
 		console.log(data);
+
+		toast.success('Solicitud creada con éxito', toastConfig);
 	};
 
 	return (

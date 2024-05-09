@@ -5,6 +5,7 @@
     "Datepicker",
     "fontsource",
     "reduxjs",
-    "stylelint"
+    "stylelint",
+    "Toastify"
   ]
 }
